@@ -1,0 +1,102 @@
+---
+title: "Assignment 1"
+author: "James La Fontaine"
+date: "26/08/2021"
+output: word_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(MASS)
+```
+
+## Question 1
+
+### 1a)
+```{r}
+quiz = read.delim("quiz.txt", header = FALSE, sep = "")
+responses = quiz[,1]
+summary(responses)
+sd(responses)
+IQR(responses)
+quantile(responses, type = 7)
+boxplot(responses, horizontal = TRUE)
+```
+
+This distribution is asymmetrical and positively skewed with the centre lying roughly below the median 60. This distribution has a relatively large spread with a range of 233 due to an outlier, and even still has a range of approximately 140 when ignoring outliers. The distribution additionally has a relatively loose IQR of 45 and relatively large standard deviation of 40.54. The responses appear to spread out further and further as they become larger.
+
+### 1b)
+
+```{r}
+# starting values for the parameters determined via the moment of methods
+alpha.hat = mean(responses)^2/var(responses)
+theta.hat = var(responses)/mean(responses)
+
+gamma.fit = fitdistr(responses, densfun = "gamma", start = list(shape = alpha.hat, scale = theta.hat)) 
+
+shape.hat = gamma.fit$estimate[[1]]
+scale.hat = gamma.fit$estimate[[2]]
+shape.hat
+scale.hat
+```
+
+### 1c)
+
+```{r}
+hist(responses, freq = FALSE, col = "gray", main = NULL, xlab = "Response Values", nclass = 10, ylim = c(0,0.013))
+curve(dgamma(x, shape = shape.hat, scale = scale.hat), lwd = 2, add = TRUE)
+```
+
+### 1d)
+
+```{r}
+gamma.sample = rgamma(116, shape = shape.hat, scale = scale.hat)
+
+
+qqplot(gamma.sample, responses, main = "Gamma QQ Plot for Quiz Responses", xlab = "Theoretical Quantiles", ylab = "Sample Quantiles")
+
+abline(a=0, b=1)
+```
+
+The model fits the data quite well and thus this QQ Plot demonstrates that the gamma distribution with the parameters estimated earlier is a good approximation for the distribution of the data.
+
+## Question 4
+
+Let Damjan's average of the sample minimum and maximum be Estimator 1. Let Julia's sample median be Estimator 2. Let Martina's sample mean be Estimator 3.
+
+```{r}
+numberofsimulations = 20000
+N = numberofsimulations
+estimator1 = 1:N
+estimator2 = 1:N
+estimator3 = 1:N
+for (i in 1:N) {
+  normal.sample = rnorm(10)
+  estimator1[i] = (max(normal.sample) + min(normal.sample)) / 2
+  estimator2[i] = median(normal.sample)
+  estimator3[i] = mean(normal.sample)
+}
+
+# subtract 0 as this is the true mean of the standard normal distribution
+bias.estimator1 = mean(estimator1) - 0
+bias.estimator2 = mean(estimator2) - 0
+bias.estimator3 = mean(estimator3) - 0
+
+variance.estimator1 = var(estimator1)
+variance.estimator2 = var(estimator2)
+variance.estimator3 = var(estimator3)
+```
+
+```{r echo=FALSE}
+cat("Bias of Estimator 1:", bias.estimator1)
+cat("Bias of Estimator 2:", bias.estimator2)
+cat("Bias of Estimator 3:", bias.estimator3)
+cat("Variance of Estimator 1:", variance.estimator1)
+cat("Variance of Estimator 2:", variance.estimator2)
+cat("Variance of Estimator 3:", variance.estimator3)
+boxplot(estimator1, estimator2, estimator3, names = c("Damjan (1)", "Julia (2)", "Martina (3)"), range = 0)
+
+
+```
+
+Note that the boxplot whiskers have been extended out to the maximums and minimums of each data set for improved visual clarity.

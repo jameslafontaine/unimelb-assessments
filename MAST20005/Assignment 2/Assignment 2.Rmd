@@ -1,0 +1,162 @@
+---
+title: "Assignment 2"
+author: "James La Fontaine"
+date: "16/09/2021"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Question 3
+
+### 3a)
+
+The difference in scale between the raw brain and body measurements is too significant to fit a suitable model and to produce a suitable plot to compare their relationship
+
+### 3b)
+```{r question3b}
+data(Animals, package = "MASS")
+
+brain = log(Animals$brain)
+body = log(Animals$body)
+
+model1 = lm(brain ~ body, data = log(Animals))
+
+summary(model1)
+```
+### 3c)
+```{r question 3c}
+
+plot(body, brain, xlab = "log(body) (kg)", ylab = "log(brain) (g)")
+abline(model1)
+par(mfrow = c(1, 2))
+plot(model1, 1:2)
+```
+It seems quite plausible to assume that the residuals are normally distributed according to the QQ plot, and the model plot indicates that this linear regression model appears to represent the relationship between an animal's body and brain moderately well. However, the residuals vs fitted values plot produces a systematic 'U' pattern which implies that the assumption of linearity isn't holding, although this is clearly caused by the outliers in the data.
+
+### 3d)
+```{r question 3d}
+
+AnimalsNoDinosaurs = Animals[-c(6, 16, 26),]
+brain2 = log(AnimalsNoDinosaurs$brain)
+body2 = log(AnimalsNoDinosaurs$body)
+model2 = lm(brain2 ~ body2, data = log(AnimalsNoDinosaurs))
+
+summary(model2)
+```
+
+
+### 3e)
+
+```{r question 3e}
+
+plot(body2, brain2, xlab = "log(body) (kg)", ylab = "log(brain) (g)")
+abline(model2)
+```
+
+
+
+
+### 3f)
+
+```{r question 3f}
+newdata = data.frame(body2 = 500)
+
+predict(model2, newdata, interval = "confidence")
+```
+
+## Question 5
+
+### 5a)
+
+H0: p1 = p2
+
+H1: p1 ≠ p2
+
+### 5b)
+
+```{r question 5b}
+x = c(120, 60)
+n = c(800, 600)
+
+p1 = prop.test(x, n)
+
+p1
+
+z_statistic = sqrt(p1$statistic)
+
+names(z_statistic) = NULL
+
+cat('z_statistic:', z_statistic, '\n')
+
+critical_value = qnorm(1-0.05/2)
+
+cat('critical value:', critical_value, '\n')
+```
+The observed value of the Z-statistic is 2.6852. When α = 0.05, the rejection region for this test is |z| > 1.96. Therefore we reject H0 and can conclude that there is evidence suggesting that the rates of babies with low birth weight differ between Africa and the Americas. More specifically, there is evidence that the rate is higher in Africa than the Americas.
+
+### 5c)
+```{r question 5c}
+
+p2 = prop.test(x, n, conf.level = 0.99)
+
+p2
+
+z_statistic = sqrt(p2$statistic)
+
+names(z_statistic) = NULL
+
+cat('z_statistic:', z_statistic, '\n')
+
+critical_value = qnorm(1-0.01/2)
+
+cat('critical value:', critical_value, '\n')
+```
+
+If α = 0.01, then the rejection region for the test is |z| > 2.5758. Therefore we still reject H0 and conclude that there is evidence suggesting that the low birth weight rates differ between the two continents.
+
+### 5d)
+```{r question 5d}
+
+conf_int = p1$conf.int
+
+cat('95% confidence interval for difference in rates: (',round(conf_int[1], 4),',', round(conf_int[2], 4),')')
+```
+
+## Question 6
+
+### 6a)
+```{r question 6a}
+significance_level = pgeom(4, 0.4, lower.tail = FALSE) + dgeom(4, 0.4)
+cat('The probability of committing a Type I Error is', significance_level)
+```
+
+### 6b)
+```{r question 6b}
+beta = pgeom(4, 0.2) - dgeom(4, 0.2)
+cat('The probability of committing a Type II Error is', beta)
+```
+
+### 6c)
+```{r question 6c}
+K1 = function(p)
+    1 - (pgeom(4, p) - dgeom(4, p))
+p = seq(0.0, 0.4, 0.01)
+K = K1(p)
+
+plot(p, K, type = 'l', ylab = 'Power, K(p)')
+```
+
+### 6d)
+```{r question 6d}
+cat('significance level for critical value = 4:', pgeom(4, 0.4, lower.tail = FALSE) + dgeom(4, 0.4), '\n')
+cat('significance level for critical value = 5:', pgeom(5, 0.4, lower.tail = FALSE) + dgeom(5, 0.4), '\n')
+cat('significance level for critical value = 6:', pgeom(6, 0.4, lower.tail = FALSE) + dgeom(6, 0.4), '\n')
+cat('significance level for critical value = 7:', pgeom(7, 0.4, lower.tail = FALSE) + dgeom(7, 0.4), '\n')
+
+```
+
+Therefore, a test where the null hypothesis is rejected if the observed value is greater than or equal to 6
+gives an approximate significance level of 0.05. The actual significance level of this test is 0.046656.
