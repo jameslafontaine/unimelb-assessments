@@ -1,0 +1,62 @@
+\documentclass[11pt]{article}
+
+\usepackage{pstricks,pst-node,pst-tree}
+
+\pagestyle{plain}
+\textwidth      164mm
+\textheight     236mm
+\topmargin      -8mm
+\oddsidemargin  -2mm
+\evensidemargin -2mm
+
+\begin{document}
+
+\thispagestyle{empty}
+\begin{center}
+{\sc The University of Melbourne
+\\
+School of Computing and Information Systems
+\\ 
+COMP30026 Models of Computation}
+\bigskip \\
+{\Large\bf Resolution Proof Example}
+\end{center}
+
+
+\begin{center}
+  % Dimensions
+  \begin{pspicture}(0,0)(12,12) % \showgrid
+  \psset{nodesepA=2pt,nodesepB=2pt,linecolor=black,arrows=-}
+  
+  % Clause nodes
+  \rput[c](1,11){\rnode[c]{N1}{$\{Q(f(u), g(x)), P(x)\}$}}
+  \rput[c](5,11){\rnode[c]{N2}{$\{\neg P(b)\}$}}
+  \rput[c](8,11){\rnode[c]{N3}{$\{\neg Q(z,y), R(z,z)\}$}}
+  \rput[c](12,11){\rnode[c]{N4}{$\{\neg R(w, f(u))\}$}}
+  \rput[c](3,8.5){\rnode[c]{N5}{$\{Q(f(u), g(b))\}$}}
+  \rput[c](10,8.5){\rnode[c]{N6}{$\{\neg Q(f(u),y)\}$}}
+  \rput[c](6.5,5){\rnode[c]{N7}{$\bot$}}
+  
+  % Resolvent edges
+  % Use \ncline{N1}{N5} for straight lines
+  \ncarc[arcangle=-45]{N1}{N5}
+  \ncarc[arcangle=45]{N2}{N5}
+  \ncarc[arcangle=-45]{N3}{N6}
+  \ncarc[arcangle=45]{N4}{N6}
+  \ncarc[arcangle=-30]{N5}{N7}
+  \ncarc[arcangle=30]{N6}{N7}
+  
+  % Unifiers
+  \rput[c](3,9.25){$\{x \mapsto b\}$}
+  \rput[c](10,9.5){$\left\{
+    \begin{array}{l}
+      z \mapsto f(u)\\
+      w \mapsto f(u)
+    \end{array}
+  \right\}$}
+  \rput[c](6.5,6){$\{y \mapsto g(b)\}$}
+  
+  \end{pspicture}
+\end{center}
+
+\end{document}

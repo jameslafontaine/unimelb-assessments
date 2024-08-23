@@ -1,0 +1,15 @@
+# put your circuit design here, using the
+# syntax described in the specification
+i = -Q + -y
+j = u
+k = v
+l = w + (P -R)
+m = u
+n = v
+o = -x y
+p = -u
+u = -R + w
+v = w + (Q R) + x
+w = -(P + Q)
+x = P Q
+y = P + R
