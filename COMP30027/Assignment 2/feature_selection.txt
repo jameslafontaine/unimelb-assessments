@@ -1,0 +1,516 @@
+
+==================================== DATASET =  doc2vecNAD ================================
+
+============================================================================================
+X_train: (199, 4491) X_valid: (50, 4491)
+
+--------------------------------------- K =  10 ------------------------------
+
+========= 0R (with k= 10 features): 
+complete accuracy is: 0.66
+f accuracy is: 0.66
+mi accuracy is: 0.66
+
+========= 1R (with k= 10 features): 
+complete accuracy is: 0.66
+f accuracy is: 0.66
+mi accuracy is: 0.66
+
+========= 5-nearest neighbour (with k= 10 features): 
+complete accuracy is: 0.56
+f accuracy is: 0.58
+mi accuracy is: 0.54
+
+========= 21-nearest neighbour (with k= 10 features): 
+complete accuracy is: 0.68
+f accuracy is: 0.66
+mi accuracy is: 0.7
+
+========= Decision Tree (with k= 10 features): 
+complete accuracy is: 0.66
+f accuracy is: 0.58
+mi accuracy is: 0.52
+
+========= Linear kernel SGD SVM (with k= 10 features): 
+complete accuracy is: 0.68
+f accuracy is: 0.3
+mi accuracy is: 0.6
+
+========= Linear kernel SMO SVM (with k= 10 features): 
+complete accuracy is: 0.7
+f accuracy is: 0.44
+mi accuracy is: 0.28
+
+========= RBF kernel SVM (with k= 10 features): 
+complete accuracy is: 0.66
+f accuracy is: 0.62
+mi accuracy is: 0.32
+
+--------------------------------------- K =  100 ------------------------------
+
+========= 0R (with k= 100 features): 
+complete accuracy is: 0.66
+f accuracy is: 0.66
+mi accuracy is: 0.66
+
+========= 1R (with k= 100 features): 
+complete accuracy is: 0.66
+f accuracy is: 0.66
+mi accuracy is: 0.66
+
+========= 5-nearest neighbour (with k= 100 features): 
+complete accuracy is: 0.56
+f accuracy is: 0.6
+mi accuracy is: 0.6
+
+========= 21-nearest neighbour (with k= 100 features): 
+complete accuracy is: 0.68
+f accuracy is: 0.64
+mi accuracy is: 0.66
+
+========= Decision Tree (with k= 100 features): 
+complete accuracy is: 0.66
+f accuracy is: 0.48
+mi accuracy is: 0.58
+
+========= Linear kernel SGD SVM (with k= 100 features): 
+complete accuracy is: 0.66
+f accuracy is: 0.5
+mi accuracy is: 0.52
+
+========= Linear kernel SMO SVM (with k= 100 features): 
+complete accuracy is: 0.7
+f accuracy is: 0.64
+mi accuracy is: 0.36
+
+========= RBF kernel SVM (with k= 100 features): 
+complete accuracy is: 0.66
+f accuracy is: 0.66
+mi accuracy is: 0.42
+
+--------------------------------------- K =  1000 ------------------------------
+
+========= 0R (with k= 1000 features): 
+complete accuracy is: 0.66
+f accuracy is: 0.66
+mi accuracy is: 0.66
+
+========= 1R (with k= 1000 features): 
+complete accuracy is: 0.66
+f accuracy is: 0.66
+mi accuracy is: 0.66
+
+========= 5-nearest neighbour (with k= 1000 features): 
+complete accuracy is: 0.56
+f accuracy is: 0.56
+mi accuracy is: 0.56
+
+========= 21-nearest neighbour (with k= 1000 features): 
+complete accuracy is: 0.68
+f accuracy is: 0.68
+mi accuracy is: 0.66
+
+========= Decision Tree (with k= 1000 features): 
+complete accuracy is: 0.66
+f accuracy is: 0.64
+mi accuracy is: 0.6
+
+========= Linear kernel SGD SVM (with k= 1000 features): 
+complete accuracy is: 0.66
+f accuracy is: 0.3
+mi accuracy is: 0.52
+
+========= Linear kernel SMO SVM (with k= 1000 features): 
+complete accuracy is: 0.7
+f accuracy is: 0.7
+mi accuracy is: 0.54
+
+========= RBF kernel SVM (with k= 1000 features): 
+complete accuracy is: 0.66
+f accuracy is: 0.66
+mi accuracy is: 0.66
+
+--------------------------------------- K =  450 ------------------------------
+
+========= 0R (with k= 450 features): 
+complete accuracy is: 0.66
+f accuracy is: 0.66
+mi accuracy is: 0.66
+
+========= 1R (with k= 450 features): 
+complete accuracy is: 0.66
+f accuracy is: 0.66
+mi accuracy is: 0.66
+
+========= 5-nearest neighbour (with k= 450 features): 
+complete accuracy is: 0.56
+f accuracy is: 0.56
+mi accuracy is: 0.54
+
+========= 21-nearest neighbour (with k= 450 features): 
+complete accuracy is: 0.68
+f accuracy is: 0.68
+mi accuracy is: 0.66
+
+========= Decision Tree (with k= 450 features): 
+complete accuracy is: 0.66
+f accuracy is: 0.66
+mi accuracy is: 0.52
+
+========= Linear kernel SGD SVM (with k= 450 features): 
+complete accuracy is: 0.48
+f accuracy is: 0.66
+mi accuracy is: 0.66
+
+========= Linear kernel SMO SVM (with k= 450 features): 
+complete accuracy is: 0.7
+f accuracy is: 0.7
+mi accuracy is: 0.46
+
+========= RBF kernel SVM (with k= 450 features): 
+complete accuracy is: 0.66
+f accuracy is: 0.66
+mi accuracy is: 0.66
+
+--------------------------------------- K =  899 ------------------------------
+
+========= 0R (with k= 899 features): 
+complete accuracy is: 0.66
+f accuracy is: 0.66
+mi accuracy is: 0.66
+
+========= 1R (with k= 899 features): 
+complete accuracy is: 0.66
+f accuracy is: 0.66
+mi accuracy is: 0.66
+
+========= 5-nearest neighbour (with k= 899 features): 
+complete accuracy is: 0.56
+f accuracy is: 0.56
+mi accuracy is: 0.58
+
+========= 21-nearest neighbour (with k= 899 features): 
+complete accuracy is: 0.68
+f accuracy is: 0.68
+mi accuracy is: 0.66
+
+========= Decision Tree (with k= 899 features): 
+complete accuracy is: 0.66
+f accuracy is: 0.72
+mi accuracy is: 0.62
+
+========= Linear kernel SGD SVM (with k= 899 features): 
+complete accuracy is: 0.66
+f accuracy is: 0.66
+mi accuracy is: 0.34
+
+========= Linear kernel SMO SVM (with k= 899 features): 
+complete accuracy is: 0.7
+f accuracy is: 0.7
+mi accuracy is: 0.6
+
+========= RBF kernel SVM (with k= 899 features): 
+complete accuracy is: 0.66
+f accuracy is: 0.66
+mi accuracy is: 0.66
+
+--------------------------------------- K =  2246 ------------------------------
+
+========= 0R (with k= 2246 features): 
+complete accuracy is: 0.66
+f accuracy is: 0.66
+mi accuracy is: 0.66
+
+========= 1R (with k= 2246 features): 
+complete accuracy is: 0.66
+f accuracy is: 0.66
+mi accuracy is: 0.66
+
+========= 5-nearest neighbour (with k= 2246 features): 
+complete accuracy is: 0.56
+f accuracy is: 0.56
+mi accuracy is: 0.5
+
+========= 21-nearest neighbour (with k= 2246 features): 
+complete accuracy is: 0.68
+f accuracy is: 0.68
+mi accuracy is: 0.66
+
+========= Decision Tree (with k= 2246 features): 
+complete accuracy is: 0.66
+f accuracy is: 0.68
+mi accuracy is: 0.62
+
+========= Linear kernel SGD SVM (with k= 2246 features): 
+complete accuracy is: 0.3
+f accuracy is: 0.52
+mi accuracy is: 0.66
+
+========= Linear kernel SMO SVM (with k= 2246 features): 
+complete accuracy is: 0.7
+f accuracy is: 0.7
+mi accuracy is: 0.6
+
+========= RBF kernel SVM (with k= 2246 features): 
+complete accuracy is: 0.66
+f accuracy is: 0.66
+mi accuracy is: 0.66
+
+==================================== DATASET =  cvNAD ================================
+
+============================================================================================
+X_train: (199, 131155) X_valid: (50, 131155)
+
+--------------------------------------- K =  10 ------------------------------
+
+========= 0R (with k= 10 features): 
+complete accuracy is: 0.66
+f accuracy is: 0.66
+mi accuracy is: 0.66
+
+========= 1R (with k= 10 features): 
+complete accuracy is: 0.66
+f accuracy is: 0.66
+mi accuracy is: 0.66
+
+========= 5-nearest neighbour (with k= 10 features): 
+complete accuracy is: 0.6
+f accuracy is: 0.66
+mi accuracy is: 0.66
+
+========= 21-nearest neighbour (with k= 10 features): 
+complete accuracy is: 0.68
+f accuracy is: 0.66
+mi accuracy is: 0.66
+
+========= Decision Tree (with k= 10 features): 
+complete accuracy is: 0.64
+f accuracy is: 0.66
+mi accuracy is: 0.66
+
+========= Linear kernel SGD SVM (with k= 10 features): 
+complete accuracy is: 0.66
+f accuracy is: 0.66
+mi accuracy is: 0.66
+
+========= Linear kernel SMO SVM (with k= 10 features): 
+complete accuracy is: 0.7
+f accuracy is: 0.3
+mi accuracy is: 0.66
+
+========= RBF kernel SVM (with k= 10 features): 
+complete accuracy is: 0.66
+f accuracy is: 0.3
+mi accuracy is: 0.66
+
+--------------------------------------- K =  100 ------------------------------
+
+========= 0R (with k= 100 features): 
+complete accuracy is: 0.66
+f accuracy is: 0.66
+mi accuracy is: 0.66
+
+========= 1R (with k= 100 features): 
+complete accuracy is: 0.66
+f accuracy is: 0.66
+mi accuracy is: 0.68
+
+========= 5-nearest neighbour (with k= 100 features): 
+complete accuracy is: 0.6
+f accuracy is: 0.34
+mi accuracy is: 0.68
+
+========= 21-nearest neighbour (with k= 100 features): 
+complete accuracy is: 0.68
+f accuracy is: 0.66
+mi accuracy is: 0.66
+
+========= Decision Tree (with k= 100 features): 
+complete accuracy is: 0.64
+f accuracy is: 0.62
+mi accuracy is: 0.68
+
+========= Linear kernel SGD SVM (with k= 100 features): 
+complete accuracy is: 0.42
+f accuracy is: 0.62
+mi accuracy is: 0.68
+
+========= Linear kernel SMO SVM (with k= 100 features): 
+complete accuracy is: 0.7
+f accuracy is: 0.62
+mi accuracy is: 0.68
+
+========= RBF kernel SVM (with k= 100 features): 
+complete accuracy is: 0.66
+f accuracy is: 0.6
+mi accuracy is: 0.08
+
+--------------------------------------- K =  1000 ------------------------------
+
+========= 0R (with k= 1000 features): 
+complete accuracy is: 0.66
+f accuracy is: 0.66
+mi accuracy is: 0.66
+
+========= 1R (with k= 1000 features): 
+complete accuracy is: 0.66
+f accuracy is: 0.66
+mi accuracy is: 0.66
+
+========= 5-nearest neighbour (with k= 1000 features): 
+complete accuracy is: 0.6
+f accuracy is: 0.66
+mi accuracy is: 0.66
+
+========= 21-nearest neighbour (with k= 1000 features): 
+complete accuracy is: 0.68
+f accuracy is: 0.66
+mi accuracy is: 0.66
+
+========= Decision Tree (with k= 1000 features): 
+complete accuracy is: 0.64
+f accuracy is: 0.64
+mi accuracy is: 0.54
+
+========= Linear kernel SGD SVM (with k= 1000 features): 
+complete accuracy is: 0.6
+f accuracy is: 0.52
+mi accuracy is: 0.58
+
+========= Linear kernel SMO SVM (with k= 1000 features): 
+complete accuracy is: 0.7
+f accuracy is: 0.68
+mi accuracy is: 0.54
+
+========= RBF kernel SVM (with k= 1000 features): 
+complete accuracy is: 0.66
+f accuracy is: 0.66
+mi accuracy is: 0.54
+
+--------------------------------------- K =  13116 ------------------------------
+
+========= 0R (with k= 13116 features): 
+complete accuracy is: 0.66
+f accuracy is: 0.66
+mi accuracy is: 0.66
+
+========= 1R (with k= 13116 features): 
+complete accuracy is: 0.66
+f accuracy is: 0.66
+mi accuracy is: 0.66
+
+========= 5-nearest neighbour (with k= 13116 features): 
+complete accuracy is: 0.6
+f accuracy is: 0.6
+mi accuracy is: 0.52
+
+========= 21-nearest neighbour (with k= 13116 features): 
+complete accuracy is: 0.68
+f accuracy is: 0.68
+mi accuracy is: 0.66
+
+========= Decision Tree (with k= 13116 features): 
+complete accuracy is: 0.64
+f accuracy is: 0.62
+mi accuracy is: 0.7
+
+========= Linear kernel SGD SVM (with k= 13116 features): 
+complete accuracy is: 0.66
+f accuracy is: 0.66
+mi accuracy is: 0.66
+
+========= Linear kernel SMO SVM (with k= 13116 features): 
+complete accuracy is: 0.7
+f accuracy is: 0.7
+mi accuracy is: 0.58
+
+========= RBF kernel SVM (with k= 13116 features): 
+complete accuracy is: 0.66
+f accuracy is: 0.66
+mi accuracy is: 0.66
+
+--------------------------------------- K =  26232 ------------------------------
+
+========= 0R (with k= 26232 features): 
+complete accuracy is: 0.66
+f accuracy is: 0.66
+mi accuracy is: 0.66
+
+========= 1R (with k= 26232 features): 
+complete accuracy is: 0.66
+f accuracy is: 0.66
+mi accuracy is: 0.64
+
+========= 5-nearest neighbour (with k= 26232 features): 
+complete accuracy is: 0.6
+f accuracy is: 0.6
+mi accuracy is: 0.56
+
+========= 21-nearest neighbour (with k= 26232 features): 
+complete accuracy is: 0.68
+f accuracy is: 0.68
+mi accuracy is: 0.66
+
+========= Decision Tree (with k= 26232 features): 
+complete accuracy is: 0.64
+f accuracy is: 0.62
+mi accuracy is: 0.6
+
+========= Linear kernel SGD SVM (with k= 26232 features): 
+complete accuracy is: 0.66
+f accuracy is: 0.66
+mi accuracy is: 0.18
+
+========= Linear kernel SMO SVM (with k= 26232 features): 
+complete accuracy is: 0.7
+f accuracy is: 0.7
+mi accuracy is: 0.52
+
+========= RBF kernel SVM (with k= 26232 features): 
+complete accuracy is: 0.66
+f accuracy is: 0.66
+mi accuracy is: 0.66
+
+--------------------------------------- K =  65578 ------------------------------
+
+========= 0R (with k= 65578 features): 
+complete accuracy is: 0.66
+f accuracy is: 0.66
+mi accuracy is: 0.66
+
+========= 1R (with k= 65578 features): 
+complete accuracy is: 0.66
+f accuracy is: 0.66
+mi accuracy is: 0.66
+
+========= 5-nearest neighbour (with k= 65578 features): 
+complete accuracy is: 0.6
+f accuracy is: 0.6
+mi accuracy is: 0.56
+
+========= 21-nearest neighbour (with k= 65578 features): 
+complete accuracy is: 0.68
+f accuracy is: 0.68
+mi accuracy is: 0.66
+
+========= Decision Tree (with k= 65578 features): 
+complete accuracy is: 0.64
+f accuracy is: 0.58
+mi accuracy is: 0.56
+
+========= Linear kernel SGD SVM (with k= 65578 features): 
+complete accuracy is: 0.56
+f accuracy is: 0.66
+mi accuracy is: 0.52
+
+========= Linear kernel SMO SVM (with k= 65578 features): 
+complete accuracy is: 0.7
+f accuracy is: 0.7
+mi accuracy is: 0.68
+
+========= RBF kernel SVM (with k= 65578 features): 
+complete accuracy is: 0.66
+f accuracy is: 0.66
+mi accuracy is: 0.66
+
+============================================================================================
