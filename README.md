@@ -1,40 +1,51 @@
 # unimelb-assignments
 
-A repository containing my various other University of Melbourne Computer Science, Software Engineering, Data Science, and Mathematics assignments / projects which didn't quite merit their own complete repositories.
-The list of assignments contained within this repository is subject to change and is not finalised as of the time of writing this.
+A repository containing my various other University of Melbourne Computer Science, Software Engineering, Data Science, and Mathematics assignments / projects which didn't quite merit their own complete repositories due to their more compact nature / smaller scope.
 
 ## List of Assignments
-#### COMP10002 - Foundation of Algorithms
-- ass1
-- ass2
 
-#### COMP20007 - Design of Algorithms
-- Assignment 1
-- Assignment 2
-
-#### COMP20008 - Elements of Data Processing
-- Assignment 1
-- Assignment 2
-
-#### SWEN20003 - Object Oriented Software Development
+#### COMP10001 - Foundations of Computing
 - Project 1
 - Project 2
 
+#### MAST10005 - Calculus 1
+- Written Assignments
+
+#### MAST10007 - Linear Algebra
+- Written Assignments
+
+#### MAST10006 - Calculus 2
+- Written Assignments
+
+#### ENGR10003 - Engineering Systems Design 2
+- Digital Systems Assignment
+- Programming Assignment 1
+- Programming Assignment 2
+- Mechanics Assignment 1
+- Mechanics Assignment 2
+
+#### ISYS10001 - Foundations of Information Systems
+- Assignment 1
+- Assignment 2
+
+#### MAST20004 - Probability
+- Written Assignments
+
+#### MAST20005 - Statistics 
+- Assignment 1
+- Assignment 2
+- Assignment 3
+  
 ####  INFO20003 - Database Systems
 - Assignment 1
 - Assignment 2
 
-#### SWEN30006 - Software Design and Modelling
-- Project 1
-- Project 2
+#### FNCE20005 - Corporate Financial Decision Making
+- Tutorial Assignments
 
 #### COMP30026 - Models of Computation
 - Assignment 1
 - Assignment 2
-
-#### COMP30023 - Computer Systems
-- Project 1
-- Project 2
 
 #### COMP30027 - Machine Learning
 - Assignment 1
