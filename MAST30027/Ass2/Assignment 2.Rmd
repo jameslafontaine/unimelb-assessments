@@ -1,0 +1,306 @@
+---
+title: "MAST30027 Modern Applied Statistics Assignment 2"
+author: "James La Fontaine"
+subtitle: "Tutorial:Wed 1-2PM, Yidi Deng"
+date: "`r Sys.Date()`"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r load in data}
+data = read.table(file="assignment2_2023.txt", header=TRUE)
+
+dim(data)
+
+names(data)
+
+data$prebake = factor(data$prebake)
+data$flux = factor(data$flux)
+data$cooling = factor(data$cooling)
+data$temp = factor(data$temp)
+```
+
+## Data Visualisation and Choice of Model
+
+As the number of defects is a discrete and positive count, we will first try fitting a Poisson model and start by plotting the distribution of numDefects and plotting the predictors against g(y) where g is the canonical log link function for a Poisson Regression model. We will also add a small constant of 1 to numDefects to allow us to calculate the log  (due to the presence of a 0 value).
+```{r visualisation and model choice 1, out.width="49%", fig.align='center', fig.show='hold'}
+mean(data$numDefects)
+
+hist(data$numDefects,
+     main="Number of Defects Distribution",
+     xlab="Number of Defects",
+     breaks=15
+     )
+
+# add 1 to numDefects so we can take log as there is presence of numDefect=0 observatons
+#par(mfrow=c(2,2))
+plot(log(numDefects+1) ~ prebake, data=data)
+plot(log(numDefects+1) ~ flux, data=data)
+plot(log(numDefects+1) ~ cooling, data=data)
+plot(log(numDefects+1) ~ temp, data=data)
+
+```
+
+Upon first inspection, it appears that prebake and temp have the clearest effect on the number of defects with level 2 prebake and level 1 temp tending to correlate with a larger number of defects. Temp especially seems to strongly correlate with number of defects as we can see that the number of defects has very low variance and nearly always tends to be smaller when temp is at level 2 as opposed to level 1.
+
+```{r visualisation and model choice 2, out.width="49%", fig.align='center', fig.show='hold'}
+
+# add 1 to numDefects so we can take log as there is presence of numDefect=0 observatons
+
+#par(mfrow=c(1,2))
+with(data, interaction.plot(prebake, flux, log(numDefects+1)))
+with(data, interaction.plot(prebake, cooling, log(numDefects+1)))
+#par(mfrow=c(1,2))
+with(data, interaction.plot(prebake, temp, log(numDefects+1)))
+with(data, interaction.plot(flux, cooling, log(numDefects+1)))
+#par(mfrow=c(1,2))
+with(data, interaction.plot(flux, temp, log(numDefects+1)))
+with(data, interaction.plot(cooling, temp, log(numDefects+1)))
+
+
+```
+
+As we can see from the interaction plots, there is strong evidence of interaction between cooling and prebake, and between temp and cooling due to the fact that the lines in those plots are clearly not parallel. There also seems to be evidence of interaction between all the other pairs of factors except for temp and flux, which appear to have reasonably parallel lines on their interaction plot.
+
+
+Due to the strongly suggested presence of interaction, we will try fitting a Poisson GLM with and without pairwise interaction using the canonical log link function and perform a Likelihood Ratio Test to check whether interaction is significant or not. We will use a log link function as the choice of link function is less important when dealing purely with categorical predictors and also due to the convenience of using a log link with other glm functions on R due to the range of inverse log (0, inf).
+
+```{r compare pairwise interaction poisson model with additive model}
+
+imodel = glm(numDefects ~ .^2, family=poisson, data)
+
+amodel = glm(numDefects ~ ., family=poisson, data)
+
+anova(imodel, amodel, test="LRT")
+
+```
+
+As we can see, the p-value for the LRT is $<<$ 0.05 and so interaction is significant and the larger interaction model should be preferred. This is unsurprising considering the interaction plots. We will now further investigate the full interaction model and perform a model adequacy test with the deviance as the mean of numDefects is 32.25 $>>$ 5.
+
+## Initial Model Fitting
+```{r perform model adequacy test}
+summary(imodel)
+
+pchisq(imodel$deviance, imodel$df.residual, lower.tail=FALSE)
+```
+
+The deviance of 626.93 is large compared to the corresponding 37 degrees of freedom, which is supported by the model adequacy test p-value 2.489629e-108 $<<$ 0.05. This suggests that the pairwise interaction Poisson model is still inadequate. We will first check residuals.
+
+```{r check deviance residuals, out.width="49%", fig.align='center', fig.show='hold'}
+plot(residuals(imodel) ~ predict(imodel, type="link"),
+     xlab=expression(hat(eta)), ylab="Deviance residuals")
+
+```
+
+ There are no clear trends for the residuals. We will now check for overdispersion.
+
+```{r estimate dispersion}
+(phihat = sum(residuals(imodel, type="pearson")^2)/imodel$df.residual)
+
+```
+The estimated dispersion parameter 20.16727 $>>$ 1 and so we can reasonably conclude that the wave soldering data is overdispersed compared to a Poisson distribution. Therefore, we will fit a quasi-Poisson regression and again test for interaction.
+```{r compare pairwise interaction quasi-poisson model with additive quasi-poisson model}
+quasimodel.i = glm(numDefects ~ .^2, family=quasipoisson, data=data)
+
+quasimodel.a = glm(numDefects ~ ., family=quasipoisson, data=data)
+
+anova(quasimodel.i, quasimodel.a, test="F")
+```
+Interaction is still significant for the quasi-Poisson model so we include pairwise interaction and now will perform model selection using backwards elimination.  Note that if one 'half' of an interaction relationship is significant but the other combination of levels isn't, then we still will retain that interaction as we cannot remove half of an interaction relationship.
+
+```{r interaction model becomes full model}
+quasimodel.f = quasimodel.i
+```
+
+## Model Selection using backwards elimination
+```{r model selection for quasi-poisson}
+
+model = quasimodel.f
+
+summary(model)
+
+model = update(model, . ~ . - flux:cooling)
+
+summary(model)
+
+model = update(model, . ~ . - cooling)
+
+summary(model)
+
+model = update(model,  ~ . - flux)
+
+summary(model)
+
+model = update(model,  ~ . - temp:flux)
+
+summary(model)
+
+model = update(model,  ~ . - prebake:temp)
+
+summary(model)
+
+quasimodel.r = model
+
+```
+
+
+
+We will now compare the full pairwise interaction model with the new reduced model using an F test.
+
+```{r compare reduced model with full}
+anova(quasimodel.f, quasimodel.r, test="F")
+```
+
+We fail to reject the null and so the reduced model appears to perform better than expected with less parameters, so we will choose this to be our main model. We will now check diagnostics.
+
+## Diagnostics
+```{r diagnostics}
+library(faraway)
+
+par(mfrow=c(2,2))
+
+halfnorm(influence(quasimodel.r)$hat)
+mtext("Leverages")
+halfnorm(rstudent(quasimodel.r))
+mtext("Jackknife Residuals")
+halfnorm(cooks.distance(quasimodel.r))
+mtext("Cook's Distance")
+
+```
+The leverage seems to be fine, however observation 27 appears to be an outlier based on the jackknife residuals and Cook's distance plots. We will remove observation 27 and reevaluate the model.
+
+## Refitting without observation 27
+
+```{r compare pairwise interaction quasi-poisson model with additive quasi-poisson model 2}
+quasimodel2.i = glm(numDefects ~ .^2, family=quasipoisson, data=data[-27,])
+
+quasimodel2.a = glm(numDefects ~ ., family=quasipoisson, data=data[-27,])
+
+anova(quasimodel2.i, quasimodel2.a, test="F")
+```
+Pairwise interaction is still significant so we retain interaction. Now we perform model selection again using backwards elimination. 
+
+```{r interaction model becomes full model 2}
+quasimodel2.f = quasimodel2.i
+```
+
+
+```{r model selection for quasi-poisson 2, results = "hide"}
+
+# output hidden due to its longevity and similarity to previous backwards elimination
+
+model2 = quasimodel2.f
+
+summary(model2)
+
+model2 = update(model2, . ~ . - prebake:flux)
+
+summary(model2)
+
+model2 = update(model2, . ~ . - cooling)
+
+summary(model2)
+
+model2 = update(model2, . ~ . - prebake:temp)
+
+summary(model2)
+
+model2 = update(model2, . ~ . - flux:temp)
+
+summary(model2)
+
+model2 = update(model2, . ~ . - flux:cooling)
+
+summary(model2)
+
+
+
+quasimodel2.r = model2
+
+```
+
+Removing the last interaction term (flux:cooling) seems to have increased the residual deviance by a reasonable amount so we will perform an F test between the model with that term and the smaller model without that term to double check.
+
+```{r model2 comparsion last removed term}
+anova(quasimodel2.r, update(quasimodel2.r, . ~ . + flux:cooling), test="F")
+```
+It appears that the smaller model still should be preferred over the model with interaction between flux and cooling. We will now compare the reduced model with the full interaction model without observation 27.
+
+```{r model2 comparison full model}
+
+anova(quasimodel2.i, quasimodel2.r, test="F")
+```
+Yet again the smaller model performs better than expected with 4 less parameters so we will prefer that one. We will now check diagnostics again for the reduced model.
+
+## Diagnostics for model without observation 27
+
+```{r diagnostics 2, echo=FALSE}
+
+library(faraway)
+
+par(mfrow=c(2,2))
+
+halfnorm(influence(quasimodel2.r)$hat)
+mtext("Leverages")
+halfnorm(rstudent(quasimodel2.r))
+mtext("Jackknife Residuals")
+halfnorm(cooks.distance(quasimodel2.r))
+mtext("Cook's Distance")
+```
+
+The diagnostic plots appear better now. Observations 25 and 43 could arguably be removed as well but the fit is much more adequate now compared to before with observation 27 included, and this is reflected in the deviance being half (309.76) of what it was in the model that included observation 27 (626.93). We will finally check the Pearson and deviance residuals for this model.
+
+```{r residuals 2, echo=FALSE}
+library(faraway)
+
+par(mfrow=c(1,2))
+
+plot(residuals(quasimodel2.r) ~ predict(quasimodel2.r,type="link"),
+     xlab=expression(hat(eta)), ylab="Deviance residuals")
+
+plot(residuals(quasimodel2.r,type="pearson") ~ predict(quasimodel2.r, type="link"),
+      xlab=expression(hat(eta)), ylab="Pearson residuals")
+```
+
+Both residual plots show no heteroskedasticity, however there may be a slight superlinear relationship. Regardless, this fit should be satisfactory enough for the purposes of identifying important factors and interactions. We will now use this model to draw some conclusions about which factors and two-way interactions are most related to the number of defects.
+
+```{r set reduced model as final model, echo=FALSE}
+final_model = quasimodel2.r
+```
+
+
+## Summary and Interpretation of Final Model
+```{r summary and interpretation}
+summary(final_model)
+
+data.frame(backTransformedContrasts=sign(final_model$coefficients)
+                                    *exp(abs(final_model$coefficients)))
+
+```
+
+The model predicts the average number of defects when all factors are at level 1 to be 31.14. If we fix factors to level 1, we can conclude that in terms of individual factors, temperature is the most important one with level 2 temperature being associated with 4.22 less defects on average than level 1 temperature. Prebake is the next most significant factor with prebake level 2 being associated with 3.42 more defects on average than prebake at level 1. Flux is moderately less important than the previously mentioned factors, causing a 1.42 decrease in the average number of defects for level 2 flux compared to level 1 flux. Cooling wasn't considered to be significant by itself within our model. 
+
+The interaction between prebake and cooling was found to be significant, with prebake at level 2 and cooling at level 2 being associated with 4.48 less defects on average than when prebake is at level 1 and cooling is at level 1. Conversely, prebake being at level 1 and cooling at level 2 was associated with a 1.30 increase in average defects compared to prebake at level 1 and cooling at level 1. Finally, the interaction between temp and cooling was also found to be significant as level 2 temp and level 2 cooling was associated with a 2.44 increase in the average number of defects compared to when level 1 temp and level 1 cooling is experienced.
+
+```{r summary and interpretation 2}
+
+newdata = expand.grid(prebake = c(1,2), flux = c(1,2), cooling = c(1,2), temp = c(1,2))
+
+newdata$prebake = factor(newdata$prebake)
+newdata$flux = factor(newdata$flux)
+newdata$cooling = factor(newdata$cooling)
+newdata$temp = factor(newdata$temp)
+
+preds = cbind(newdata, predictedNumDefects =
+                                        predict(final_model, newdata, type="response"))
+
+preds = preds[order(preds$predictedNumDefects),]
+
+preds
+```
+
+
+Based on these predictions for each combination of factor levels, we can conclude that temperature level 2 is crucial to minimising the number of defects. It also seems that when prebake is at level 1, cooling should be at level 1, and when prebake is at level 2, cooling should be at level 2. However, average number of defects are higher when both temp and cooling are at level 2 and so prebake at level 1 and cooling at level 1 is preferred when temp is at level 2. The optimal combination of factors for the lowest average number of defects (estimated to be 5.20) is prebake at level 1, flux at level 2, cooling at level 1, and temp at level 2.
