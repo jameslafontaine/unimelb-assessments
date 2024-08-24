@@ -1,0 +1,133 @@
+=================================== doc2vecNAD =================================== 
+===================================  0R
+Training accuracy:  0.7046070460704607
+              precision    recall  f1-score   support
+
+         3.0       0.00      0.00      0.00      1200
+         4.0       0.70      1.00      0.82      3208
+         5.0       0.00      0.00      0.00       205
+
+    accuracy                           0.70      4613
+   macro avg       0.23      0.33      0.27      4613
+weighted avg       0.48      0.70      0.57      4613
+
+===================================  Bernoulli NB
+Training accuracy:  0.7215176151761518
+              precision    recall  f1-score   support
+
+         3.0       0.47      0.26      0.33      1200
+         4.0       0.72      0.86      0.79      3208
+         5.0       0.20      0.14      0.16       205
+
+    accuracy                           0.67      4613
+   macro avg       0.46      0.42      0.43      4613
+weighted avg       0.63      0.67      0.64      4613
+
+===================================  RBF SVM
+Training accuracy:  0.7046070460704607
+              precision    recall  f1-score   support
+
+         3.0       0.00      0.00      0.00      1200
+         4.0       0.70      1.00      0.82      3208
+         5.0       0.00      0.00      0.00       205
+
+    accuracy                           0.70      4613
+   macro avg       0.23      0.33      0.27      4613
+weighted avg       0.48      0.70      0.57      4613
+
+===================================  Linear SVM C=10
+Training accuracy:  0.721680216802168
+              precision    recall  f1-score   support
+
+         3.0       0.56      0.11      0.19      1200
+         4.0       0.71      0.97      0.82      3208
+         5.0       0.43      0.03      0.05       205
+
+    accuracy                           0.70      4613
+   macro avg       0.57      0.37      0.35      4613
+weighted avg       0.66      0.70      0.62      4613
+
+===================================  Linear SVM C=1
+Training accuracy:  0.7206504065040651
+              precision    recall  f1-score   support
+
+         3.0       0.53      0.11      0.18      1200
+         4.0       0.71      0.96      0.82      3208
+         5.0       0.57      0.04      0.07       205
+
+    accuracy                           0.70      4613
+   macro avg       0.60      0.37      0.36      4613
+weighted avg       0.66      0.70      0.62      4613
+
+===================================  Linear SVM C=0.1
+Training accuracy:  0.7147967479674797
+              precision    recall  f1-score   support
+
+         3.0       0.64      0.05      0.09      1200
+         4.0       0.70      0.99      0.82      3208
+         5.0       1.00      0.00      0.01       205
+
+    accuracy                           0.70      4613
+   macro avg       0.78      0.35      0.31      4613
+weighted avg       0.70      0.70      0.60      4613
+
+===================================  29 Nearest Neighbours
+Training accuracy:  0.7091056910569106
+              precision    recall  f1-score   support
+
+         3.0       0.41      0.06      0.11      1200
+         4.0       0.70      0.96      0.81      3208
+         5.0       0.47      0.04      0.08       205
+
+    accuracy                           0.69      4613
+   macro avg       0.53      0.36      0.33      4613
+weighted avg       0.62      0.69      0.60      4613
+
+===================================  Decision Tree
+Training accuracy:  1.0
+              precision    recall  f1-score   support
+
+         3.0       0.29      0.30      0.30      1200
+         4.0       0.71      0.70      0.71      3208
+         5.0       0.09      0.08      0.08       205
+
+    accuracy                           0.57      4613
+   macro avg       0.36      0.36      0.36      4613
+weighted avg       0.57      0.57      0.57      4613
+
+===================================  Log Regression newton-cholesky
+Training accuracy:  0.746720867208672
+              precision    recall  f1-score   support
+
+         3.0       0.54      0.18      0.27      1200
+         4.0       0.72      0.94      0.81      3208
+         5.0       0.47      0.07      0.13       205
+
+    accuracy                           0.70      4613
+   macro avg       0.58      0.40      0.40      4613
+weighted avg       0.66      0.70      0.64      4613
+
+===================================  Log Regression lbfgs
+Training accuracy:  0.7081842818428185
+              precision    recall  f1-score   support
+
+         3.0       0.55      0.08      0.14      1200
+         4.0       0.71      0.98      0.82      3208
+         5.0       0.43      0.01      0.03       205
+
+    accuracy                           0.70      4613
+   macro avg       0.56      0.36      0.33      4613
+weighted avg       0.65      0.70      0.61      4613
+
+===================================  Ridge Classifier
+Training accuracy:  0.7602168021680217
+              precision    recall  f1-score   support
+
+         3.0       0.55      0.16      0.25      1200
+         4.0       0.72      0.94      0.82      3208
+         5.0       0.44      0.12      0.18       205
+
+    accuracy                           0.70      4613
+   macro avg       0.57      0.41      0.42      4613
+weighted avg       0.66      0.70      0.64      4613
+
