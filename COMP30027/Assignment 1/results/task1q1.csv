@@ -1,0 +1,5 @@
+,classical,pop,accuracy,macro avg,weighted avg
+precision,0.9524,1.0,0.9767,0.9762,0.9779
+recall,1.0,0.9565,0.9767,0.9783,0.9767
+f1-score,0.9756,0.9778,0.9767,0.9767,0.9768
+support,20.0,23.0,0.9767,43.0,43.0
