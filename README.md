@@ -36,7 +36,7 @@ A repository containing my various other University of Melbourne Computer Scienc
 - Exam
 - MST
 
-### FNCE10002 - Principles of Finance
+#### FNCE10002 - Principles of Finance
 - Exam
 
 #### MAST20004 - Probability
